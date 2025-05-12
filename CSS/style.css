@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #062d64;
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 50px;
+  background-color: #001f3f;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.logo span {
+  color: #e1940e;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px;
+  font-size: large;
+  align-items: center;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+.nav-links a:active {
+  text-decoration: underline black;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+
+.profile-icon {
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+  margin-left: 30px;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 50px;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero-text .learn-btn {
+  padding: 10px 20px;
+  background-color: #1e1e1e;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero-img img {
+  width: 450px;
+}
+
+/* Section bawah */
+.section-bawah {
+  display: flex;
+  padding: 50px;
+  background-color: #1b1e23;
+  flex-wrap: wrap;
+}
+
+.section-bawah .left {
+  flex: 2;
+  padding-right: 40px;
+}
+
+.section-bawah .right {
+  flex: 1;
+  background-color: #26292f;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.section-bawah h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.section-bawah p {
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.right ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+
+.right ul li {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.right .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #004b7c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-img {
+    margin-top: 30px;
+  }
+}
