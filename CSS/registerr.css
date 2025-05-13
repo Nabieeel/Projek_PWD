@@ -9,6 +9,7 @@ body {
   background-color: #062d64;
   background-size: 100% 100%;
   overflow: hidden;
+  
 }
 
 .container {
@@ -27,7 +28,7 @@ body {
   -webkit-backdrop-filter: blur(8px);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 40px 32px;
+  padding: 5px 60px;
   width: 350px;
   color: #fff;
   text-align: center;
@@ -133,4 +134,16 @@ button[type="submit"]:hover {
 
 .login-form p a:hover {
   color: #7c3aed;
+}
+
+.message{
+  margin: 5px 0;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  background-color:#be7070;
+  color: white;
+  font-size: 17px;
+  box-sizing: border-box;
 }
