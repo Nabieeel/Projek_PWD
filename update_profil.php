@@ -19,6 +19,16 @@ if(mysqli_num_rows($select) > 0){
     die('User not found');
 }
 
+//proses logout akun
+$user_id = (int) $_SESSION['user_id'];
+
+if(isset($_GET['logout'])){
+    unset($_SESSION['user_id']);
+    session_destroy();
+    header('location:login.php');
+    exit;
+}
+
 // Proses hapus akun
 if (isset($_POST['delete_account'])) {
     $delete = mysqli_query($conn, "DELETE FROM `user_form` WHERE id = '$user_id'") or die('query failed');
@@ -147,6 +157,9 @@ if(isset($_POST['update_profil'])){
             </div>
             <input type="submit" value="Update Profile" name="update_profil" class="btn" />
             <input type="submit" value="Delete Account" name="delete_account" class="delete-btn" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');" />
+            <br>
+            <br>
+            <a href="login.php?logout=1" class="delete-btn">Logout</a>
             <br>
             <br>
             <a href="index.html" class="delete-btn">Go Back</a>
