@@ -16,10 +16,8 @@ if(isset($_POST['submit'])){
             header('location:home.php');
             exit();
         }else{
-            $message[] = 'Incorrect email or password!';
+            $message[] = 'incorrect email or password!';
         }
-    }else{
-        $message[] = 'Incorrect email or password!';
     }
 }
 ?>
@@ -35,16 +33,15 @@ if(isset($_POST['submit'])){
 <body>
   <div class="container">
 
-    <?php
-    if(!empty($message)){
-      foreach($message as $msg){
-        echo '<div class="message" style="color: yellow; margin-bottom: 10px;">'.htmlspecialchars($msg).'</div>';
-      }
-    }
-    ?>
-
     <form action="" method="post" class="login-form" novalidate>
       <h2>Login</h2>
+      <?php
+        if(isset($message)){
+        foreach($message as $msg){
+        echo '<div class = "message">'.$msg.'</div>';
+        }
+        }
+      ?>
 
       <div class="input-group">
         <input type="email" name="email" required placeholder=" " />
