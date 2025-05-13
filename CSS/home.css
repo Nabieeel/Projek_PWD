@@ -1,0 +1,103 @@
+/* Reset dasar dan font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Container utama */
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+}
+
+/* Profil image */
+.profil img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #090179;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.profil img:hover {
+  box-shadow: 0 0 20px #2c2ec9;
+}
+
+/* Nama user */
+.profil h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #f0f0f0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* Tombol update profil dan logout */
+.btn,
+.delete-btn {
+  display: inline-block;
+  width: 250px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: none;
+  color: #fff;
+  text-align: center;
+
+}
+
+/* Tombol update profil */
+.btn {
+  background-color: #30a36a;
+}
+
+.btn:hover {
+  background-color: #046533;
+}
+
+/* Tombol logout */
+.delete-btn {
+  background-color: #f35146;
+}
+
+.delete-btn:hover {
+  background-color: #a82a22;
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 400px) {
+  .container {
+    padding: 30px 20px;
+    max-width: 90%;
+  }
+
+  .btn,
+  .delete-btn {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}
