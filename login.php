@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
         $row = mysqli_fetch_assoc($select);
         if(password_verify($pass, $row['password'])){ 
             $_SESSION['user_id'] = $row['id'];
-            header('location:home.php');
+            header('location:login.php');
             exit();
         }else{
             $message[] = 'incorrect email or password!';
