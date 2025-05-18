@@ -19,16 +19,6 @@ if(mysqli_num_rows($select) > 0){
     die('User not found');
 }
 
-//proses logout akun
-$user_id = (int) $_SESSION['user_id'];
-
-if(isset($_GET['logout'])){
-    unset($_SESSION['user_id']);
-    session_destroy();
-    header('location:login.php');
-    exit;
-}
-
 // Proses hapus akun
 if (isset($_POST['delete_account'])) {
     $delete = mysqli_query($conn, "DELETE FROM `user_form` WHERE id = '$user_id'") or die('query failed');
@@ -63,27 +53,27 @@ if(isset($_POST['update_profil'])){
     $message[] = 'Failed to update gender!';
     }
 
-    // Ambil password lama untuk validasi
-    $select_pass = mysqli_query($conn, "SELECT password FROM `user_form` WHERE id = '$user_id'") or die('query failed');
-    $row = mysqli_fetch_assoc($select_pass);
-    $hashed_old_pass = $row['password'];
+   // Ambil password lama untuk validasi 
+$select_pass = mysqli_query($conn, "SELECT password FROM `user_form` WHERE id = '$user_id'") or die('query failed');
+$row = mysqli_fetch_assoc($select_pass);
+$old_password_db = $row['password'];
 
-    $old_pass = $_POST['update_pass'];
-    $new_pass = $_POST['new_pass'];
-    $confirm_pass = $_POST['confirm_pass'];
+$old_pass = $_POST['update_pass'];
+$new_pass = $_POST['new_pass'];
+$confirm_pass = $_POST['confirm_pass'];
 
-    // Update password jika diisi
-    if(!empty($old_pass) && !empty($new_pass) && !empty($confirm_pass)){
-        if(!password_verify($old_pass, $hashed_old_pass)){
-            $message[] = 'Old password not matched!';
-        } elseif($new_pass !== $confirm_pass){
-            $message[] = 'Confirm password not matched!';
-        } else {
-            $new_hashed_pass = password_hash($new_pass, PASSWORD_DEFAULT);
-            mysqli_query($conn, "UPDATE `user_form` SET password = '$new_hashed_pass' WHERE id = '$user_id'") or die('query failed');
-            $message[] = 'Password updated successfully!';
-        }
+// Update password jika diisi
+if (!empty($old_pass) && !empty($new_pass) && !empty($confirm_pass)) {
+    // Cek password lama sesuai dengan yang ada di database 
+    if ($old_pass !== $old_password_db) {
+        $message[] = 'Old password not matched!';
+    } elseif ($new_pass !== $confirm_pass) {
+        $message[] = 'Confirm password not matched!';
+    } else {
+        mysqli_query($conn, "UPDATE `user_form` SET password = '$new_pass' WHERE id = '$user_id'") or die('query failed');
+        $message[] = 'Password updated successfully!';
     }
+}
 
     // Update gambar profil jika ada upload
     if(isset($_FILES['update_image']) && $_FILES['update_image']['name'] != ''){
@@ -144,11 +134,11 @@ if(isset($_POST['update_profil'])){
                     <span>Gender (male/female):</span>
                     <input type="text" name="update_gender" value="<?php echo $fetch['gender']; ?>" placeholder="Enter new gender" class="box" required />
                     <span>Update your picture:</span>
-                    <input type="file" name="update_image" accept="image/jpeg, image/png" class="box" />
+                    <input type="file" name="update_image" value="<?php echo $fetch['image']; ?>"accept="image/jpeg, image/png" class="box" />
                 </div>
                 <div class="input-group">
                     <span>Old password:</span>
-                    <input type="password" name="update_pass" placeholder="Enter previous password" class="box" />
+                    <input type="password" name="update_pass" value="<?php echo $fetch['password']; ?>" placeholder="Enter previous password" class="box" />
                     <span>New password:</span>
                     <input type="password" name="new_pass" placeholder="Enter new password" class="box" />
                     <span>Confirm password:</span>
@@ -159,7 +149,7 @@ if(isset($_POST['update_profil'])){
             <input type="submit" value="Delete Account" name="delete_account" class="delete-btn" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');" />
             <br>
             <br>
-            <a href="login.php?logout=1" class="delete-btn">Logout</a>
+            <a href="logout.php" class="delete-btn">Logout</a>
             <br>
             <br>
             <a href="index.html" class="delete-btn">Go Back</a>
