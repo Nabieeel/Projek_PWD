@@ -11,16 +11,19 @@ if(isset($_POST['submit'])){
     $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE email = '$email'") or die(mysqli_error($conn));
     if(mysqli_num_rows($select) > 0){
         $row = mysqli_fetch_assoc($select);
-        if(password_verify($pass, $row['password'])){ 
+        if($pass === $row['password']){ 
             $_SESSION['user_id'] = $row['id'];
-            header('location:index.html');
+            header('location:index.php');
             exit();
         }else{
             $message[] = 'incorrect email or password!';
         }
+    } else {
+        $message[] = 'incorrect email or password!';
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
