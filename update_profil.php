@@ -152,7 +152,7 @@ if (!empty($old_pass) && !empty($new_pass) && !empty($confirm_pass)) {
             <a href="logout.php" class="delete-btn">Logout</a>
             <br>
             <br>
-            <a href="index.html" class="delete-btn">Go Back</a>
+            <a href="index.php" class="delete-btn">Go Back</a>
         </form>
     </div>
 </body>
